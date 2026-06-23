@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КПП «е-Декларант» — Белтаможсервис</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; }
+
+
+  .hdr {
+    background: linear-gradient(135deg, #042C53 0%, #185FA5 60%, #0F6E56 100%);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-text { color: #fff; font-size: 18px; font-weight: 500; }
+  .logo-sub { color: rgba(255,255,255,0.65); font-size: 12px; }
+  .hdr-nav { display: flex; align-items: center; gap: 24px; }
+  .hdr-nav a { color: rgba(255,255,255,0.75); font-size: 13px; text-decoration: none; }
+  .hdr-nav a:hover { color: #fff; }
+  .hdr-phone { color: #58E3F5; font-size: 24px; font-weight: 500; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+
+
+  .hero {
+    background: linear-gradient(135deg, #042C53 0%, #185FA5 100%);
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(88,227,245,0.15);
+    color: #58E3F5;
+    border: 1px solid rgba(88,227,245,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 { color: #fff; font-size: 28px; font-weight: 500; line-height: 1.3; margin-bottom: 1rem; }
+  .hero p { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.7; margin-bottom: 1.5rem; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary-custom {
+    background: #58E3F5; color: #042C53;
+    border: none; border-radius: 8px;
+    padding: 10px 20px; font-size: 14px; font-weight: 500;
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-primary-custom:hover { background: #3dd4e6; color: #042C53; }
+  .btn-outline-custom {
+    background: transparent; color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 8px; padding: 10px 20px;
+    font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block;
+  }
+  .btn-outline-custom:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .hero-img {
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 2rem;
+    min-height: 200px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .doc-caption { color: rgba(255,255,255,0.5); font-size: 11px; margin-bottom: 4px; }
+  .doc-row {
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .doc-icon {
+    width: 32px; height: 32px;
+    background: #58E3F5;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .doc-label { color: #fff; font-size: 13px; }
+  .doc-label span { font-size: 11px; opacity: 0.6; }
+  .doc-status { margin-left: auto; font-size: 11px; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
+  .status-ok { background: rgba(29,158,117,0.3); color: #9FE1CB; }
+  .status-proc { background: rgba(88,227,245,0.2); color: #58E3F5; }
+
+
+  .features { padding: 2.5rem 2rem; background: #f0ede6; }
+  .section-title { font-size: 20px; font-weight: 500; color: #1a1a1a; margin-bottom: 1.5rem; text-align: center; }
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+  .feat-card {
+    background: #fff;
+    border: 0.5px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .feat-card:hover { border-color: #185FA5; box-shadow: 0 2px 12px rgba(24,95,165,0.1); }
+  .feat-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .feat-title { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 6px; }
+  .feat-desc { font-size: 12px; color: #666; line-height: 1.5; }
+  .bg-blue { background: #E6F1FB; }
+  .bg-teal { background: #E1F5EE; }
+  .bg-amber { background: #FAEEDA; }
+  .bg-purple { background: #EEEDFE; }
+  .bg-coral { background: #FAECE7; }
+  .bg-green { background: #EAF3DE; }
+
+  
+  .functions { padding: 2.5rem 2rem; background: #f0ede6; }
+  .func-list { display: flex; flex-direction: column; gap: 10px; }
+  .func-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 16px;
+    border: 0.5px solid rgba(0,0,0,0.08);
+  }
+  .func-num {
+    width: 28px; height: 28px;
+    background: #185FA5;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 12px; font-weight: 500;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .func-text { font-size: 13px; color: #1a1a1a; line-height: 1.6; }
+
+
+  .keys { padding: 2.5rem 2rem; background: #fff; }
+  .keys-sub { font-size: 13px; color: #666; margin-bottom: 1.25rem; }
+  .key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .key-badge {
+    background: linear-gradient(135deg, #E6F1FB, #E1F5EE);
+    border: 0.5px solid #B5D4F4;
+    border-radius: 10px;
+    padding: 14px;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    text-align: center;
+  }
+  .key-name { font-size: 14px; font-weight: 500; color: #042C53; }
+  .key-type { font-size: 11px; color: #185FA5; }
+
+  .downloads { padding: 2.5rem 2rem; background: #fff; }
+  .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .dl-card {
+    border: 0.5px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex; align-items: center; gap: 12px;
+    background: #f8f8f6;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .dl-card:hover { border-color: #185FA5; background: #E6F1FB; }
+  .dl-card-icon {
+    width: 44px; height: 44px;
+    background: #E6F1FB;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .dl-card-title { font-size: 13px; font-weight: 500; color: #1a1a1a; }
+  .dl-card-date { font-size: 11px; color: #888; margin-top: 2px; }
+
+  .footer {
+    background: #042C53;
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-logo { color: #fff; font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .footer-addr { color: rgba(255,255,255,0.55); font-size: 12px; }
+  .footer-copy { color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 4px; }
+  .footer-phone { color: #58E3F5; font-size: 14px; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .footer-phone:hover { color: #3dd4e6; }
+  .footer-intl { color: rgba(255,255,255,0.55); font-size: 12px; margin-top: 4px; }
+  .footer-social { display: flex; gap: 12px; margin-top: 8px; }
+
+  @media (max-width: 768px) {
+    .hdr-nav { display: none; }
+    .footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+
+<header class="hdr">
+  <div class="logo">
+    <div class="logo-icon">
+    
+    </div>
+    <div>
+      <div class="logo-text">Белтаможсервис</div>
+      <div class="logo-sub">Таможенные решения</div>
+    </div>
+  </div>
+  <nav class="hdr-nav">
+    <a href="https://declarant.by/ru/logistics/">Услуги</a>
+    <a href="https://declarant.by/ru/software/e-declarant/">Программные продукты</a>
+    <a href="https://declarant.by/ru/logistics/mark/">Маркировка</a>
+    <a href="https://declarant.by/ru/tax-free/">Tax Free</a>
+    <a href="https://declarant.by/ru/about-company/">О компании</a>
+    <a href="https://declarant.by/ru/about-company/contacts/">Контакты</a>
+    <a href="tel:197" class="hdr-phone">
+      <i class="ti ti-phone" style="font-size:18px"></i>197
+    </a>
+  </nav>
+</header>
+</section>
+
+
+<section class="features">
+  <h2 class="section-title">Что умеет е-Декларант</h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon bg-blue"><i class="ti ti-file-plus" style="color:#185FA5;font-size:22px"></i></div>
+      <div class="feat-title">Ввод данных</div>
+      <div class="feat-desc">Вручную, копированием или загрузкой из XML/CSV файлов</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon bg-teal"><i class="ti ti-pen" style="color:#0F6E56;font-size:22px"></i></div>
+      <div class="feat-title">Подпись ЭЦП</div>
+      <div class="feat-desc">Формирование и подписание электронных документов цифровой подписью</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon bg-purple"><i class="ti ti-send" style="color:#534AB7;font-size:22px"></i></div>
+      <div class="feat-title">Передача в ОАИС</div>
+      <div class="feat-desc">Отправка деклараций таможенным органам через государственную систему</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon bg-amber"><i class="ti ti-list-check" style="color:#854F0B;font-size:22px"></i></div>
+      <div class="feat-title">Контроль статусов</div>
+      <div class="feat-desc">Отслеживание ответов таможни и решений по переданным декларациям</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon bg-coral"><i class="ti ti-check" style="color:#993C1D;font-size:22px"></i></div>
+      <div class="feat-title">Форматный контроль</div>
+      <div class="feat-desc">Автоматическая проверка форматных и логических ошибок перед отправкой</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon bg-green"><i class="ti ti-book" style="color:#3B6D11;font-size:22px"></i></div>
+      <div class="feat-title">Журнал деклараций</div>
+      <div class="feat-desc">Ведение реестра переданных в таможню документов</div>
+    </div>
+  </div>
+</section>
+
+<section class="functions">
+  <h2 class="section-title" style="text-align:left">Поддерживаемые документы</h2>
+  <div class="func-list">
+    <div class="func-item">
+      <div class="func-num">1</div>
+      <div class="func-text">Декларации на товары (ДТ) и заявления о выпуске товаров до подачи декларации</div>
+    </div>
+    <div class="func-item">
+      <div class="func-num">2</div>
+      <div class="func-text">Статистические декларации — учёт товарооборота в рамках ЕАЭС</div>
+    </div>
+    <div class="func-item">
+      <div class="func-num">3</div>
+      <div class="func-text">Электронное предварительное информирование (ЭПИ) для ускорения таможенного контроля</div>
+    </div>
+    <div class="func-item">
+      <div class="func-num">4</div>
+      <div class="func-text">Пассажирские таможенные декларации — через сервис подписи <a href="/ru/software/e-declarant/eclient-ecp/">Signservice</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="keys">
+  <h2 class="section-title" style="text-align:left">Поддерживаемые USB-ключи</h2>
+  <div class="keys-sub">КПП «е-Декларант» совместим со следующими типами ключей ЭЦП</div>
+  <div class="key-grid">
+    <div class="key-badge">
+      <i class="ti ti-usb" style="font-size:28px;color:#185FA5"></i>
+      <div class="key-name">AvToken</div>
+      <div class="key-type">USB-токен</div>
+    </div>
+    <div class="key-badge">
+      <i class="ti ti-key" style="font-size:28px;color:#0F6E56"></i>
+      <div class="key-name">AvPass</div>
+      <div class="key-type">USB-пароль</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="downloads">
+  <h2 class="section-title" style="text-align:left">Документы и ссылки</h2>
+  <div class="dl-grid">
+    <a class="dl-card" href="/software-updates/">
+      <div class="dl-card-icon"><i class="ti ti-refresh" style="color:#185FA5;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Обновления ПО</div><div class="dl-card-date">Актуальная версия</div></div>
+    </a>
+    <a class="dl-card" href="/ru/software/support/">
+      <div class="dl-card-icon"><i class="ti ti-headset" style="color:#185FA5;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Техническая поддержка</div><div class="dl-card-date">Пн–Пт, 9:00–18:00</div></div>
+    </a>
+    <a class="dl-card" href="/ru/software/form/">
+      <div class="dl-card-icon"><i class="ti ti-shopping-cart" style="color:#185FA5;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Приобрести продукт</div><div class="dl-card-date">Подать заявку онлайн</div></div>
+    </a>
+    <a class="dl-card" href="/ru/software/e-declarant/manual/">
+      <div class="dl-card-icon"><i class="ti ti-book-2" style="color:#185FA5;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Инструкции и файлы</div><div class="dl-card-date">Документация</div></div>
+    </a>
+    <a class="dl-card" href="/upload/certificate/e-declarant.pdf" target="_blank">
+      <div class="dl-card-icon"><i class="ti ti-certificate" style="color:#0F6E56;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Свидетельство о регистрации</div><div class="dl-card-date">е-Декларант</div></div>
+    </a>
+    <a class="dl-card" href="/upload/certificate/e-client-2022.pdf" target="_blank">
+      <div class="dl-card-icon"><i class="ti ti-certificate" style="color:#534AB7;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Свидетельство e-Client</div><div class="dl-card-date">2022</div></div>
+    </a>
+    <a class="dl-card" href="/ru/software/e-declarant/recommendations/">
+      <div class="dl-card-icon"><i class="ti ti-star" style="color:#854F0B;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Рекомендации</div><div class="dl-card-date">Советы по работе</div></div>
+    </a>
+    <a class="dl-card" href="/ru/software/e-declarant/client-updates/">
+      <div class="dl-card-icon"><i class="ti ti-device-desktop-down" style="color:#185FA5;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Обновления клиентской части</div><div class="dl-card-date">е-Декларант</div></div>
+    </a>
+    <a class="dl-card" href="/ru/software/e-declarant/eclient-ecp/">
+      <div class="dl-card-icon"><i class="ti ti-lock" style="color:#185FA5;font-size:22px"></i></div>
+      <div><div class="dl-card-title">ПП е-Клиент и ЭЦП</div><div class="dl-card-date">Signservice</div></div>
+    </a>
+    <a class="dl-card" href="/upload/iblock/890/jenbt1uk1qj83b1j0r62pvsycxb1vdvf/1545-s-20.12.25.pdf" target="_blank">
+      <div class="dl-card-icon"><i class="ti ti-file-download" style="color:#185FA5;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Прейскурант от 20.12.2025</div><div class="dl-card-date">PDF</div></div>
+    </a>
+    <a class="dl-card" href="/upload/iblock/883/oya2f6qlmw5t250agyohnpgenyql4pb2/Preyskurant-_1515-ot-16.12.2024.pdf" target="_blank">
+      <div class="dl-card-icon"><i class="ti ti-file-download" style="color:#534AB7;font-size:22px"></i></div>
+      <div><div class="dl-card-title">Прейскурант от 16.12.2024</div><div class="dl-card-date">PDF</div></div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>
+    <div class="footer-logo">РУП «Белтаможсервис»</div>
+    <div class="footer-addr">222210, Минская обл., Смолевичский р-н, парк «Великий камень», просп. Пекинский, 18</div>
+    <div class="footer-copy">© 1999–2026</div>
+  </div>
+  <div>
+    <a href="tel:197" class="footer-phone">
+      <i class="ti ti-phone"></i> 197 Приходько Кирилл
+    </a>
+    <div class="footer-intl">+375 33 911 11 97 (международный)</div>
+    <div class="footer-social">
+      <a href="https://t.me/beltamozhservice" target="_blank">
+        <i class="ti ti-brand-telegram" style="color:rgba(255,255,255,0.5);font-size:20px"></i>
+      </a>
+      <a href="https://www.instagram.com/beltamozhservice/" target="_blank">
+        <i class="ti ti-brand-instagram" style="color:rgba(255,255,255,0.5);font-size:20px"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
